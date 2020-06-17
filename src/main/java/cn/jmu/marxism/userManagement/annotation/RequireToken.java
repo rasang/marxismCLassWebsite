@@ -1,0 +1,17 @@
+package cn.jmu.marxism.userManagement.annotation;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+/**
+ * @author PlumK
+ * @version 1.0
+ * @date 2020/6/17 10:52
+ * 注解需要登录认证的方法
+ */
+@Target({ElementType.METHOD, ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+public @interface RequireToken {
+    boolean required() default true;
+}
