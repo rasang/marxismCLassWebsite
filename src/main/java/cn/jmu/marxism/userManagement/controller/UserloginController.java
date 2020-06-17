@@ -31,6 +31,16 @@ public class UserloginController {
     @CrossOrigin(origins = "http://127.0.0.1:5500")
     @RequestMapping(value = "/register")
     public ResponseBody register(@RequestParam("username") String username, @RequestParam("password") String password){
-        return null;
+        String code = null;
+        String msg = null;
+        try{
+            userService.stuRegister(username, password);
+            code = "200";
+            msg = "注册成功";
+        } catch(Exception e){
+            code = "401";
+            msg = "注册失败";
+        }
+        return new ResponseBody(code, msg, null);
     }
 }

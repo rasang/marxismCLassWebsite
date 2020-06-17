@@ -57,7 +57,7 @@ public class UserService {
         }
     }
 
-    public boolean register(String name, String password){
-        return true;
+    public Integer stuRegister(String name, String password){
+        return userMapper.register(name,password,"S");
     }
 }

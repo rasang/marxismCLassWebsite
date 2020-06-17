@@ -23,6 +23,6 @@ public interface UserMapper {
     @Select("select * from user where username = #{username} and password=PASSWORD(#{password})")
     User userLogin(@Param("username") String username, @Param("password") String password);
 
-    @Select("insert into user (username, password, identification) values (#{username},PASSWORD(#{password}),'#{identification})")
-    int register(@Param("username") String username, @Param("password") String password, @Param("identification") String identification);
+    @Select("insert into user (username, password, identification) values (#{username},PASSWORD(#{password}),#{identification})")
+    Integer register(@Param("username") String username, @Param("password") String password, @Param("identification") String identification);
 }
