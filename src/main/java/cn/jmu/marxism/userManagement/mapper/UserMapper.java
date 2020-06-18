@@ -20,9 +20,22 @@ public interface UserMapper {
     @Select("select * from user where userId = #{userId}")
     User getUserById(@Param("userId") int userId);
 
+    /**
+     * 用户登录
+     * @param username 用户名
+     * @param password 密码
+     * @return
+     */
     @Select("select * from user where username = #{username} and password=PASSWORD(#{password})")
     User userLogin(@Param("username") String username, @Param("password") String password);
 
+    /**
+     * 用户注册
+     * @param username 用户名
+     * @param password 密码
+     * @param identification 身份，S（学生）或T（老师）
+     * @return
+     */
     @Select("insert into user (username, password, identification) values (#{username},PASSWORD(#{password}),#{identification})")
     Integer register(@Param("username") String username, @Param("password") String password, @Param("identification") String identification);
 }
