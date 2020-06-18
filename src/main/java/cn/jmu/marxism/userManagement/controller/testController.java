@@ -1,11 +1,13 @@
 package cn.jmu.marxism.userManagement.controller;
 
-import cn.jmu.marxism.userManagement.annotation.RequireToken;
-import cn.jmu.marxism.userManagement.model.User;
+import cn.jmu.marxism.common.annotation.RequireToken;
 import cn.jmu.marxism.userManagement.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 
 /**
  * @author PlumK
@@ -19,7 +21,10 @@ public class testController {
     UserService userService;
     @RequireToken
     @RequestMapping("/test")
-    public User test(){
-        return userService.getUserById(1);
+    public HashMap test(HttpServletRequest request){
+        HashMap hashMap = new HashMap();
+        hashMap.put("test1","test2");
+        return hashMap;
     }
+
 }

@@ -1,6 +1,6 @@
-package cn.jmu.marxism.userManagement.config;
+package cn.jmu.marxism.common.interceptor.config;
 
-import cn.jmu.marxism.userManagement.interceptor.AuthenticationInterceptor;
+import cn.jmu.marxism.common.interceptor.AuthenticationInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;

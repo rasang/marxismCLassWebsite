@@ -1,8 +1,11 @@
 package cn.jmu.marxism.userManagement.service;
 
+import cn.jmu.marxism.common.model.ResponseBody;
 import cn.jmu.marxism.common.service.Utils;
 import cn.jmu.marxism.userManagement.mapper.UserMapper;
 import cn.jmu.marxism.userManagement.model.User;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,21 +49,34 @@ public class UserService {
      * 用户登录
      * @param username
      * @param password
-     * @return 登录成功返回token，不成功则null
+     * @return 登录成功返回token，用户名和身份的ResponseBody，不成功则null和对应信息
      */
-    public String userLogin(String username, String password){
+    public ResponseBody userLogin(String username, String password){
         username = username.replaceAll(" ","");
         password = password.replaceAll(" ","");
+        String code = null;
+        String msg = null;
+        JSONObject resultJson =  null;
         if(!Utils.isLegalUsername(username)){
-            return "409";
-        }
-        User user = userMapper.userLogin(username, password);
-        if(user == null){
-            return null;
+            code = "409";
+            msg = "此用户名不合法";
         }
         else{
-            return this.generateToken(user);
+            User user = userMapper.userLogin(username, password);
+            if(user == null){
+                code = "401";
+                msg = "用户名或密码错误";
+            }
+            else{
+                code = "200";
+                msg = "登录成功";
+                resultJson = new JSONObject();
+                resultJson.put("token",this.generateToken(user));
+                resultJson.put("username",user.getUsername());
+                resultJson.put("identification", user.getIdentification());
+            }
         }
+        return new ResponseBody(code, msg, resultJson);
     }
 
     /**
@@ -69,12 +85,23 @@ public class UserService {
      * @param password 密码
      * @return null为成功，其他则失败
      */
-    public Integer stuRegister(String username, String password){
+    public ResponseBody stuRegister(String username, String password){
+        String code = null;
+        String msg = null;
         username = username.replaceAll(" ","");
         password = password.replaceAll(" ","");
         if(!Utils.isLegalUsername(username)){
-            return -1;
+            code = "409";
+            msg = "用户名格式错误";
         }
-        return userMapper.register(username,password,"S");
+        try{
+            Integer result = userMapper.register(username,password,"S");
+            code = "200";
+            msg = "注册成功";
+        } catch(Exception e){
+            code = "500";
+            msg = "注册失败";
+        }
+        return new ResponseBody(code, msg, null);
     }
 }

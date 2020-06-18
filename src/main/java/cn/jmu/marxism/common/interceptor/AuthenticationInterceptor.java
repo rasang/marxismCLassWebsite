@@ -1,7 +1,7 @@
-package cn.jmu.marxism.userManagement.interceptor;
+package cn.jmu.marxism.common.interceptor;
 
-import cn.jmu.marxism.userManagement.annotation.PassToken;
-import cn.jmu.marxism.userManagement.annotation.RequireToken;
+import cn.jmu.marxism.common.annotation.PassToken;
+import cn.jmu.marxism.common.annotation.RequireToken;
 import cn.jmu.marxism.userManagement.model.User;
 import cn.jmu.marxism.userManagement.service.UserService;
 import com.auth0.jwt.JWT;

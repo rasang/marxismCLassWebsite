@@ -1,4 +1,4 @@
-package cn.jmu.marxism.userManagement.annotation;
+package cn.jmu.marxism.common.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
