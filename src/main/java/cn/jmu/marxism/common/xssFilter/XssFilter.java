@@ -1,4 +1,4 @@
-package cn.jmu.marxism.xssFilter;
+package cn.jmu.marxism.common.xssFilter;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
@@ -9,8 +9,9 @@ import java.io.IOException;
  * @author xingkyh
  * @version 1.0
  * @date 2020/6/18 11:44
+ * 自定义过滤器拦截请求(创建过滤器)
  */
-@WebFilter(filterName = "XssFilter", urlPatterns = "/*")
+@WebFilter(filterName = "XssFilter", urlPatterns = {"/courseIntroduce/*","/teachPlan/*"})
 public class XssFilter implements Filter{
     FilterConfig filterConfig = null;
 

@@ -1,4 +1,4 @@
-package cn.jmu.marxism.xssFilter;
+package cn.jmu.marxism.common.xssFilter;
 
 import javax.servlet.ReadListener;
 import javax.servlet.ServletInputStream;
