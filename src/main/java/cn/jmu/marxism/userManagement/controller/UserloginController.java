@@ -36,7 +36,7 @@ public class UserloginController {
      * @return 响应体，成功状态码为200，格式错误为409，其他不明失败原因为401
      */
     @CrossOrigin(origins = "http://127.0.0.1:5500")
-    @RequestMapping(value = "/register")
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseBody register(@RequestParam("username") String username, @RequestParam("password") String password){
         return userService.stuRegister(username, password);
     }

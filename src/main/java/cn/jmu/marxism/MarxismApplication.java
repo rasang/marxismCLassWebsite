@@ -11,7 +11,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
  * @date 2020/6/17 17:50
  * 注解不需要登录认证的方法
  */
-@MapperScan("cn.jmu.marxism.userManagement.mapper")
+@MapperScan("cn.jmu.marxism.mapper")
 @ServletComponentScan("cn.jmu.marxism.common.xssFilter")
 @SpringBootApplication
 public class MarxismApplication {

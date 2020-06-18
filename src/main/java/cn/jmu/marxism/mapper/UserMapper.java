@@ -1,4 +1,4 @@
-package cn.jmu.marxism.userManagement.mapper;
+package cn.jmu.marxism.mapper;
 
 import cn.jmu.marxism.userManagement.model.User;
 import org.apache.ibatis.annotations.Param;

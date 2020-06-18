@@ -2,9 +2,8 @@ package cn.jmu.marxism.userManagement.service;
 
 import cn.jmu.marxism.common.model.ResponseBody;
 import cn.jmu.marxism.common.service.Utils;
-import cn.jmu.marxism.userManagement.mapper.UserMapper;
+import cn.jmu.marxism.mapper.UserMapper;
 import cn.jmu.marxism.userManagement.model.User;
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
