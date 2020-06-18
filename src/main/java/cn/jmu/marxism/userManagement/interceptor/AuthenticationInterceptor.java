@@ -9,7 +9,6 @@ import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.auth0.jwt.interfaces.Claim;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -18,8 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
-import java.util.Date;
-import java.util.List;
 
 /**
  * @author PlumK
@@ -32,7 +29,8 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     UserService userService;
 
     /**
-     * 重写preHandler方法，在访问之前对身份进行验证
+     * 重写preHandler方法，在访问之前对身份进行验证，如果认证通过，用户的身份信息将存储在request中，
+     * 用户身份可以通过request.getAttribute("identification")获得
      * @param request
      * @param response
      * @param handler
@@ -79,6 +77,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                 JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(user.getPassword())).build();
                 try{
                     jwtVerifier.verify(token);
+                    request.setAttribute("identification",user.getIdentification());
                     long expiresTime = JWT.decode(token).getClaim("expiresTime").asLong();
                     long test = System.currentTimeMillis();
                     if((expiresTime - System.currentTimeMillis() > 1800000)){
