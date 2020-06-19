@@ -5,10 +5,7 @@ import cn.jmu.marxism.common.annotation.TeacherOnly;
 import cn.jmu.marxism.common.model.ResponseBody;
 import cn.jmu.marxism.courseIntroduceManagement.service.CourseIntroduceService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -43,8 +40,9 @@ public class CourseIntroduceController {
      * @return 响应体，状态码成功为200，失败为403
      */
     @RequestMapping(value = "/courseIntroduce",method = RequestMethod.POST)
+    @RequireToken
     @TeacherOnly
-    public ResponseBody update(String summary, String materials, String characteristics, String conditions, String environment){
+    public ResponseBody update(@RequestParam("summary") String summary,@RequestParam("materials") String materials,@RequestParam("characteristics") String characteristics,@RequestParam("conditions") String conditions,@RequestParam("environment") String environment){
         return courseIntroduceService.update(summary,materials,characteristics,conditions,environment,1);
     }
 }

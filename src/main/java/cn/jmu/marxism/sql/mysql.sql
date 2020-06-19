@@ -24,3 +24,14 @@ CREATE TABLE `courseIntroduce` (
   `teaching_environment`  varchar(255) CHARACTER SET utf8 NOT NULL ,
   PRIMARY KEY (`id`)
 );
+
+--建teachPlan表
+
+CREATE TABLE `teachPlan` (
+  `id`  int(2) NOT NULL ,
+  `content`  varchar(255) CHARACTER SET utf8 NOT NULL ,
+  `objective`  varchar(255) CHARACTER SET utf8 NOT NULL ,
+  `arrangement`  varchar(255) CHARACTER SET utf8 NOT NULL ,
+  `assessment`  varchar(255) CHARACTER SET utf8 NOT NULL ,
+  PRIMARY KEY (`id`)
+);
