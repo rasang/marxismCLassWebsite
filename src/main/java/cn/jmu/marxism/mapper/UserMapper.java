@@ -26,7 +26,7 @@ public interface UserMapper {
      * @param password 密码
      * @return
      */
-    @Select("select * from user where username = #{username} and password=PASSWORD(#{password})")
+    @Select("select * from user where username = #{username} and password=MD5(#{password})")
     User userLogin(@Param("username") String username, @Param("password") String password);
 
     /**
@@ -36,6 +36,6 @@ public interface UserMapper {
      * @param identification 身份，S（学生）或T（老师）
      * @return
      */
-    @Select("insert into user (username, password, identification) values (#{username},PASSWORD(#{password}),#{identification})")
+    @Select("insert into user (username, password, identification) values (#{username},MD5(#{password}),#{identification})")
     Integer register(@Param("username") String username, @Param("password") String password, @Param("identification") String identification);
 }
