@@ -2,6 +2,7 @@ package cn.jmu.marxism.common.interceptor;
 
 import cn.jmu.marxism.common.annotation.PassToken;
 import cn.jmu.marxism.common.annotation.RequireToken;
+import cn.jmu.marxism.common.annotation.TeacherOnly;
 import cn.jmu.marxism.common.model.ResponseBody;
 import cn.jmu.marxism.userManagement.model.User;
 import cn.jmu.marxism.userManagement.service.UserService;
@@ -94,11 +95,27 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                 JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(user.getPassword())).build();
                 try{
                     jwtVerifier.verify(token);
-                    request.setAttribute("identification",user.getIdentification());
                     long expiresTime = JWT.decode(token).getClaim("expiresTime").asLong();
                     long test = System.currentTimeMillis();
                     if((expiresTime - System.currentTimeMillis() > 1800000)){
                         response.setHeader("refreshToken",UserService.generateToken(user));
+                    }
+                    /* 检测是否为只有教师能访问的接口 */
+                    if(method.isAnnotationPresent(TeacherOnly.class)){
+                        TeacherOnly teacherOnly = method.getAnnotation(TeacherOnly.class);
+                        if(teacherOnly.required()){
+                            if(user.getIdentification().equals("T")){
+                                return true;
+                            }
+                            else{
+                                response.setStatus(200);
+                                response.setCharacterEncoding("UTF-8");
+                                response.setContentType("application/json");
+                                ResponseBody responseBody = new ResponseBody("403", "权限不足",null);
+                                response.getWriter().print(JSONObject.toJSONString(responseBody));
+                                return false;
+                            }
+                        }
                     }
                 } catch (JWTVerificationException e){
                     response.setStatus(200);
