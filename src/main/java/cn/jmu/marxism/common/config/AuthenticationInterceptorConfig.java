@@ -1,4 +1,4 @@
-package cn.jmu.marxism.common.interceptor.config;
+package cn.jmu.marxism.common.config;
 
 import cn.jmu.marxism.common.interceptor.AuthenticationInterceptor;
 import org.springframework.context.annotation.Bean;
