@@ -32,5 +32,5 @@ public interface CourseIntroduceMapper {
      * @return 更改的结果
      */
     @Update("update courseIntroduce set course_summary=#{summary},course_materials=#{materials},teaching_characteristics=#{characteristics},teaching_conditions=#{conditions},teaching_environment=#{environment} where id=#{id}")
-    public int updata(@Param("summary") String summary,@Param("materials") String materials,@Param("characteristics") String characteristics,@Param("conditions") String conditions,@Param("environment") String environment,@Param("id") int id);
+    public int update(@Param("summary") String summary,@Param("materials") String materials,@Param("characteristics") String characteristics,@Param("conditions") String conditions,@Param("environment") String environment,@Param("id") int id);
 }

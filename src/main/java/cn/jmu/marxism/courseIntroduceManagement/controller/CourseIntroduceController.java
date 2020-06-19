@@ -1,12 +1,16 @@
 package cn.jmu.marxism.courseIntroduceManagement.controller;
 
+import cn.jmu.marxism.common.annotation.RequireToken;
+import cn.jmu.marxism.common.annotation.TeacherOnly;
 import cn.jmu.marxism.common.model.ResponseBody;
-import cn.jmu.marxism.courseIntroduceManagement.model.CourseIntroduce;
 import cn.jmu.marxism.courseIntroduceManagement.service.CourseIntroduceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author xingkyh
@@ -15,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @CrossOrigin(origins = "http://127.0.0.1:5500", maxAge = 3600)
 @RestController
-@RequestMapping(value = "/courseIntroduce")
 public class CourseIntroduceController {
     @Autowired
     CourseIntroduceService courseIntroduceService;
@@ -24,7 +27,8 @@ public class CourseIntroduceController {
      * 获取课程简介api
      * @return 响应体，状态码成功为200，失败为403
      */
-    @RequestMapping(value = "/get")
+    @RequestMapping(value = "/courseIntroduce",method = RequestMethod.GET)
+    @RequireToken
     public ResponseBody getCourseIntroduce(){
         return courseIntroduceService.getCourseIntroduce(1);
     }
@@ -38,9 +42,9 @@ public class CourseIntroduceController {
      * @param environment
      * @return 响应体，状态码成功为200，失败为403
      */
-    @RequestMapping(value = "/updata")
-    public ResponseBody updata(String summary,String materials,String characteristics,String conditions,String environment){
-        System.out.println(summary);
-        return courseIntroduceService.updata(summary,materials,characteristics,conditions,environment,1);
+    @RequestMapping(value = "/courseIntroduce",method = RequestMethod.POST)
+    @TeacherOnly
+    public ResponseBody update(String summary, String materials, String characteristics, String conditions, String environment){
+        return courseIntroduceService.update(summary,materials,characteristics,conditions,environment,1);
     }
 }

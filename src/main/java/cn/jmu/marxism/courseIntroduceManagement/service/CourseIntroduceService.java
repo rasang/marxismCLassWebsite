@@ -40,8 +40,8 @@ public class CourseIntroduceService {
      * @param id
      * @return 返回包含修改结果的ResponseBody
      */
-    public ResponseBody updata(String summary,String materials,String characteristics,String conditions,String environment,int id){
-        int result=courseIntroduceMapper.updata(summary,materials,characteristics,conditions,environment,id);
+    public ResponseBody update(String summary,String materials,String characteristics,String conditions,String environment,int id){
+        int result=courseIntroduceMapper.update(summary,materials,characteristics,conditions,environment,id);
         if(result==1){
             return new ResponseBody("200","修改成功",null);
         }else {
