@@ -3,7 +3,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/marxism?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://127.0.0.1:3306/marxism?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
     username: root
     password: plumk
   thymeleaf:

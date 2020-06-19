@@ -12,3 +12,15 @@ CREATE TABLE `user` (
   PRIMARY KEY (`userId`) USING BTREE,
   UNIQUE KEY `usernameUnique` (`username`) USING HASH
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+-- 建courseIntroduce表
+
+CREATE TABLE `courseIntroduce` (
+  `id`  int(1) NOT NULL ,
+  `course_summary`  varchar(255) CHARACTER SET utf8 NOT NULL ,
+  `course_materials`  varchar(255) CHARACTER SET utf8 NOT NULL ,
+  `teaching_characteristics`  varchar(255) CHARACTER SET utf8 NOT NULL ,
+  `teaching_conditions`  varchar(255) CHARACTER SET utf8 NOT NULL ,
+  `teaching_environment`  varchar(255) CHARACTER SET utf8 NOT NULL ,
+  PRIMARY KEY (`id`)
+);

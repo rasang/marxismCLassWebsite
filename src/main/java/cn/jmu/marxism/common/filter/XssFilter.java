@@ -1,4 +1,4 @@
-package cn.jmu.marxism.common.xssFilter;
+package cn.jmu.marxism.common.filter;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
