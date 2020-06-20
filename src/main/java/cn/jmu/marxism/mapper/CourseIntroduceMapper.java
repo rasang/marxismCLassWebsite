@@ -15,7 +15,7 @@ import org.springframework.stereotype.Repository;
 public interface CourseIntroduceMapper {
     /**
      * 根据id获取课程简介
-     * @param id
+     * @param id 课程简介id
      * @return courseIntrduce对象
      */
     @Select("select * from courseIntroduce where id=#{id}")
@@ -23,12 +23,12 @@ public interface CourseIntroduceMapper {
 
     /**
      * 更改课程简介
-     * @param summary
-     * @param materials
-     * @param characteristics
-     * @param conditions
-     * @param environment
-     * @param id
+     * @param summary 课程概要
+     * @param materials 课程资料
+     * @param characteristics 教学特色
+     * @param conditions 教学条件
+     * @param environment 教学环境
+     * @param id 课程简介id
      * @return 更改的结果
      */
     @Update("update courseIntroduce set course_summary=#{summary},course_materials=#{materials},teaching_characteristics=#{characteristics},teaching_conditions=#{conditions},teaching_environment=#{environment} where id=#{id}")

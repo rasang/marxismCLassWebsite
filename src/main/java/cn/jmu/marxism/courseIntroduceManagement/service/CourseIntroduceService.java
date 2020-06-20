@@ -18,7 +18,7 @@ public class CourseIntroduceService {
 
     /**
      * 获取课程简介
-     * @param id
+     * @param id 课程简介id
      * @return 获取成功则包含课程简介的ResponseBody，失败则为null
      */
     public ResponseBody getCourseIntroduce(int id){
@@ -32,12 +32,12 @@ public class CourseIntroduceService {
 
     /**
      * 更改课程简介
-     * @param summary
-     * @param materials
-     * @param characteristics
-     * @param conditions
-     * @param environment
-     * @param id
+     * @param summary 课程概要
+     * @param materials 课程资料
+     * @param characteristics 教学特色
+     * @param conditions 教学条件
+     * @param environment 教学环境
+     * @param id 课程简介id
      * @return 返回包含修改结果的ResponseBody
      */
     public ResponseBody update(String summary,String materials,String characteristics,String conditions,String environment,int id){

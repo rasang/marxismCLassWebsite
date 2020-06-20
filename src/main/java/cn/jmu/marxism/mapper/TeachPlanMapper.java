@@ -9,13 +9,13 @@ import org.springframework.stereotype.Repository;
 /**
  * @author xingkyh
  * @version 1.0
- * @data 2020/6/19 14:28
+ * @date 2020/6/19 14:28
  */
 @Repository
 public interface TeachPlanMapper {
     /**
      * 根据id获取教学大纲
-     * @param id
+     * @param id 教学大纲id
      * @return TeachPlan对象
      */
     @Select("select * from teachPlan where id=#{id}")
@@ -23,7 +23,7 @@ public interface TeachPlanMapper {
 
     /**
      * 修改教学大纲
-     * @param teachPlan
+     * @param teachPlan 修改后的教学大纲
      * @return 修改的结果（修改是否成功）
      */
     @Update("update teachPlan set content=#{content},objective=#{objective},arrangement=#{arrangement},assessment=#{assessment} where id=#{id}")

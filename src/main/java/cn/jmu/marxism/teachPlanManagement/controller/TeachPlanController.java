@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * @author xingkyh
+ * @version 1.0
+ * @date 2020/6/19 15:00
+ */
 @CrossOrigin(origins = "http://127.0.0.1:5500", maxAge = 3600)
 @RestController
 public class TeachPlanController {
@@ -18,7 +23,7 @@ public class TeachPlanController {
     TeachPlanService teachPlanService;
 
     /**
-     * 获取教学大纲
+     * 获取教学大纲api
      * @return 响应体，状态码成功为200，失败为403
      */
     @RequestMapping(value = "/teachPlan",method = RequestMethod.GET)
@@ -28,8 +33,8 @@ public class TeachPlanController {
     }
 
     /**
-     * 修改教学大纲
-     * @param teachPlan
+     * 修改教学大纲api
+     * @param teachPlan 修改后的教学大纲
      * @return 响应体，状态码成功为200，失败为403
      */
     @RequestMapping(value = "/teachPlan",method = RequestMethod.POST)
