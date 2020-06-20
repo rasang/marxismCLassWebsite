@@ -23,7 +23,7 @@ public class testController {
     @RequestMapping("/test")
     public HashMap test(HttpServletRequest request){
         HashMap hashMap = new HashMap();
-        hashMap.put("test1","test2");
+        hashMap.put("test1",request.getAttribute("identification"));
         return hashMap;
     }
 

@@ -35,3 +35,14 @@ CREATE TABLE `teachPlan` (
   `assessment`  varchar(255) CHARACTER SET utf8 NOT NULL ,
   PRIMARY KEY (`id`)
 );
+
+--建comment表
+
+CREATE TABLE `comment` (
+  `id`  int(10) NOT NULL AUTO_INCREMENT ,
+  `filename`  varchar(30) CHARACTER SET utf8 NOT NULL ,
+  `username`  varchar(20) CHARACTER SET utf8 NOT NULL ,
+  `content`  varchar(255) CHARACTER SET utf8 NOT NULL ,
+  `time`  datetime NOT NULL ,
+  PRIMARY KEY (`id`)
+);

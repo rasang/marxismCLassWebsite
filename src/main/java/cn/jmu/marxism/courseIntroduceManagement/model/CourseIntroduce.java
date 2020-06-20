@@ -15,9 +15,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CourseIntroduce {
     private String id;
+    //课程概要
     private String course_summary;
+    //课程资料
     private String course_materials;
+    //教学特色
     private String teaching_characteristics;
+    //教学条件
     private String teaching_conditions;
+    //教学环境
     private String teaching_environment;
 }

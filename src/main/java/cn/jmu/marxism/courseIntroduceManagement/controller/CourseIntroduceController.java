@@ -32,11 +32,11 @@ public class CourseIntroduceController {
 
     /**
      * 修改课程简介api
-     * @param summary
-     * @param materials
-     * @param characteristics
-     * @param conditions
-     * @param environment
+     * @param summary 课程概要
+     * @param materials 课程资料
+     * @param characteristics 教学特色
+     * @param conditions 教学条件
+     * @param environment 教学环境
      * @return 响应体，状态码成功为200，失败为403
      */
     @RequestMapping(value = "/courseIntroduce",method = RequestMethod.POST)

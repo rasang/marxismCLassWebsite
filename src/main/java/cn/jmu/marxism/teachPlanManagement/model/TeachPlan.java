@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 /**
  * @author xingkyh
  * @version 1.0
- * @data 2020/6/19 14:14
+ * @date 2020/6/19 14:14
  */
 @Data
 @AllArgsConstructor

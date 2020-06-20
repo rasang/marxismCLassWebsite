@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 /**
  * @author xingkyh
  * @version 1.0
- * @data 2020/6/19 14:48
+ * @date 2020/6/19 14:48
  */
 @Service
 public class TeachPlanService {
@@ -18,7 +18,7 @@ public class TeachPlanService {
 
     /**
      * 获取教学大纲
-     * @param id
+     * @param id 教学大纲id
      * @return 包含获取结果的响应体
      */
     public ResponseBody getTechPlan(int id){
@@ -32,7 +32,7 @@ public class TeachPlanService {
 
     /**
      * 修改教学大纲
-     * @param teachPlan
+     * @param teachPlan 修改后的教学大纲
      * @return 包含修改结果的响应体
      */
     public ResponseBody update(TeachPlan teachPlan){
