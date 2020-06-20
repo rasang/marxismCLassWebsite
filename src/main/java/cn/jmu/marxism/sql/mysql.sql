@@ -46,3 +46,15 @@ CREATE TABLE `comment` (
   `time`  datetime NOT NULL ,
   PRIMARY KEY (`id`)
 );
+
+--建课件原文件名和Url表
+CREATE TABLE `learnfileurl`  (
+  `filename` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,/*课件文件原名*/
+  `url` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL/*课件文件生成url的uuid.doc*/
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+--建教案原文件名和Url表
+CREATE TABLE `teachfileurl`  (
+  `filename` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,/*教案文件原名*/
+  `url` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL/*教案文件生成url的uuid.doc*/
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
