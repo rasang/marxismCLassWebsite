@@ -1,6 +1,7 @@
 package cn.jmu.marxism.mapper;
 
 import cn.jmu.marxism.fileUploadManagement.model.FileNameUrl;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -26,4 +27,10 @@ public interface FileUrlMapper {
         //查询取数据课件表
         @Select("select * from learnfileurl")
         List<FileNameUrl> selectLearnFileUrl();
+
+        @Delete("delete from learnfileurl where url=#{url}")
+        int deleteLearn(@Param("url") String url);
+
+        @Delete("delete from teachfileurl where url=#{url}")
+        int deleteTeach(@Param("url") String url);
 }
