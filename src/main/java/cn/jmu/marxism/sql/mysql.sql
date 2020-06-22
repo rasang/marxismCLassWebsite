@@ -13,6 +13,14 @@ CREATE TABLE `user` (
   UNIQUE KEY `usernameUnique` (`username`) USING HASH
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
+-- userInfoc触发器
+
+CREATE TRIGGER `userInfoTrigger` AFTER INSERT ON `user` FOR EACH ROW begin
+declare userId int;
+set userId = NEW.userId;
+insert into userInfo values (userId,null,null,null);
+end;
+
 -- 建courseIntroduce表
 
 CREATE TABLE `courseIntroduce` (
@@ -62,9 +70,9 @@ CREATE TABLE `teachfileurl`  (
 --建userInfo表
 
 CREATE TABLE `userInfo` (
-  `userName` varchar(20) NOT NULL,
+  `userId` int(10) NOT NULL,
   `clazz` char(15) DEFAULT NULL,
   `school` varchar(20) DEFAULT NULL,
-  `realName` varchar(5) DEFAULT NULL,
-  PRIMARY KEY (`userName`) USING BTREE
+  `realName` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`userId`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

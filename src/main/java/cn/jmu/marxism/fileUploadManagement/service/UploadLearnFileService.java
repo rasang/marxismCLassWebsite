@@ -46,7 +46,7 @@ public class UploadLearnFileService {
             //生成UUID
             String fileNameUuid = UUID.randomUUID() + prefix;
             //String path = "D:/learnFile/" +fileNameUuid;
-             String path=transJarPath+"//"+fileNameUuid;
+            String path="/home/www/website"+"/learnFile/"+fileNameUuid;
             //创建文件路径
             File destLearnFile = new File(path);
 
