@@ -53,7 +53,7 @@ public class UploadTeachFileService {
             //生成UUID
             String fileNameUuid = UUID.randomUUID() + prefix;
            // String path = "D:/teachFile/" +fileNameUuid;
-            String path=transJarPath+"/teachFile/"+fileNameUuid;
+            String path="/home/www/website"+"/teachFile/"+fileNameUuid;
 
             //创建文件路径
             File destTeachFile = new File(path);

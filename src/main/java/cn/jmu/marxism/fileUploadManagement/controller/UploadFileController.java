@@ -1,6 +1,8 @@
 package cn.jmu.marxism.fileUploadManagement.controller;
 
 
+import cn.jmu.marxism.common.annotation.RequireToken;
+import cn.jmu.marxism.common.annotation.TeacherOnly;
 import cn.jmu.marxism.common.model.ResponseBody;
 import cn.jmu.marxism.fileUploadManagement.model.FileNameUrl;
 import cn.jmu.marxism.fileUploadManagement.service.FileUrlToDBService;
@@ -8,6 +10,7 @@ import cn.jmu.marxism.fileUploadManagement.service.UploadLearnFileService;
 import cn.jmu.marxism.fileUploadManagement.service.UploadTeachFileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,7 +28,9 @@ public class UploadFileController {
     private FileUrlToDBService fileUrlToDBService;
 
     //上传教案文件uploadTeachFile
-    @RequestMapping(value = "/uploadTeachFile", produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/TeachFile", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
+    @RequireToken
+    @TeacherOnly
     public ResponseBody uploadTeachFile(@RequestParam("fileName") MultipartFile file) {
 
         //承接文件上传结果返回值
@@ -43,11 +48,12 @@ public class UploadFileController {
         }else{
             return new ResponseBody("-6","教案文件上传失败",null);
         }
-
     }
 
     //上传课件文件uploadLearnFile
-    @RequestMapping(value = "/uploadLearnFile", produces = "application/json;charset=UTF-8")
+    @RequestMapping(value = "/LearnFile", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
+    @RequireToken
+    @TeacherOnly
     public ResponseBody uploadLearnFile(@RequestParam("fileName") MultipartFile file){
 
         //承接文件上传结果返回值
@@ -68,21 +74,23 @@ public class UploadFileController {
 
 
     //查询教案表
-    @RequestMapping(value = "/searchTeachFile", produces = "application/json;charset=UTF-8")
-    public List<FileNameUrl> searchTeachFile(){
+    @RequireToken
+    @RequestMapping(value = "/TeachFile", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
+    public ResponseBody searchTeachFile(){
         List<FileNameUrl> end=fileUrlToDBService.selectTeachFileUrl();
         System.out.print("查询到的教案文件数量=="+end.size()+"\n");
         System.out.print(end);
-        return end;
+        return new ResponseBody("200","查询成功",end);
     }
 
     //查询课件表
-    @RequestMapping(value = "/searchLearnFile", produces = "application/json;charset=UTF-8")
-    public List<FileNameUrl> searchLearnFile(){
+    @RequireToken
+    @RequestMapping(value = "/LearnFile", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
+    public ResponseBody searchLearnFile(){
         List<FileNameUrl> end=fileUrlToDBService.selectLearnFileUrl();
         System.out.print("查询到的课件文件数量=="+end.size()+"\n");
         System.out.print(end);
-        return end;
+        return new ResponseBody("200","查询成功",end);
     }
 }
 

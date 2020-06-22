@@ -100,6 +100,7 @@ public class UserService {
         } catch(Exception e){
             code = "500";
             msg = "注册失败";
+            e.printStackTrace();
         }
         return new ResponseBody(code, msg, null);
     }

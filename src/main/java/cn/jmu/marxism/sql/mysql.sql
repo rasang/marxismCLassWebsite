@@ -39,13 +39,13 @@ CREATE TABLE `teachPlan` (
 --建comment表
 
 CREATE TABLE `comment` (
-  `id`  int(10) NOT NULL AUTO_INCREMENT ,
-  `filename`  varchar(30) CHARACTER SET utf8 NOT NULL ,
-  `username`  varchar(20) CHARACTER SET utf8 NOT NULL ,
-  `content`  varchar(255) CHARACTER SET utf8 NOT NULL ,
-  `time`  datetime NOT NULL ,
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `filename` varchar(100) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `content` varchar(255) NOT NULL,
+  `time` datetime NOT NULL,
   PRIMARY KEY (`id`)
-);
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --建课件原文件名和Url表
 CREATE TABLE `learnfileurl`  (
@@ -58,3 +58,13 @@ CREATE TABLE `teachfileurl`  (
   `filename` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,/*教案文件原名*/
   `url` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL/*教案文件生成url的uuid.doc*/
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+--建userInfo表
+
+CREATE TABLE `userInfo` (
+  `userName` varchar(20) NOT NULL,
+  `clazz` char(15) DEFAULT NULL,
+  `school` varchar(20) DEFAULT NULL,
+  `realName` varchar(5) DEFAULT NULL,
+  PRIMARY KEY (`userName`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

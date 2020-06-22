@@ -15,7 +15,7 @@ public class CorsConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .exposedHeaders("refreshToken")
-                .allowedOrigins("http://127.0.0.1:5500")
+                .allowedOrigins("http://plumk.site","http://127.0.0.1:5500")
                 .allowedMethods("GET", "HEAD", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowCredentials(false)
                 .maxAge(3600);

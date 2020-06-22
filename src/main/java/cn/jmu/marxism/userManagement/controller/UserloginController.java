@@ -1,5 +1,7 @@
 package cn.jmu.marxism.userManagement.controller;
 
+import cn.jmu.marxism.userInfoManagement.model.UserInfo;
+import cn.jmu.marxism.userInfoManagement.service.UserInfoService;
 import cn.jmu.marxism.userManagement.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,8 @@ import cn.jmu.marxism.common.model.ResponseBody;
 public class UserloginController {
     @Autowired
     UserService userService;
+    @Autowired
+    UserInfoService userInfoService;
 
     /**
      * 用户登录API

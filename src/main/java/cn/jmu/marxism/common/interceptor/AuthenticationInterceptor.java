@@ -97,8 +97,9 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
                     jwtVerifier.verify(token);
                     long expiresTime = JWT.decode(token).getClaim("expiresTime").asLong();
                     long test = System.currentTimeMillis();
-                    if((expiresTime - System.currentTimeMillis() > 1800000)){
-                        response.setHeader("refreshToken",UserService.generateToken(user));
+                    String test1 = UserService.generateToken(user);
+                    if(true){
+                        response.setHeader("refreshToken",test1);
                     }
                     /* 检测是否为只有教师能访问的接口 */
                     if(method.isAnnotationPresent(TeacherOnly.class)){

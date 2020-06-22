@@ -22,8 +22,8 @@ public class UploadLearnFileService {
         //存放 url
         String  url;
         //设置允许上传文件类型,课件只有.pdf
-        String AllowFile = ".png,.pdf";
-        System.out.print("开始上传课件文件"+"\n");
+        String AllowFile = ".pdf";
+        System.out.print("开始上传教案文件"+"\n");
 
         //判断文件是否为空
         if (file.isEmpty()) {
@@ -46,7 +46,7 @@ public class UploadLearnFileService {
             //生成UUID
             String fileNameUuid = UUID.randomUUID() + prefix;
             //String path = "D:/learnFile/" +fileNameUuid;
-             String path=transJarPath+"/learnFile/"+fileNameUuid;
+             String path=transJarPath+"//"+fileNameUuid;
             //创建文件路径
             File destLearnFile = new File(path);
 
