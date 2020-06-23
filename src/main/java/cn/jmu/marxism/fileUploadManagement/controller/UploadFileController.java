@@ -17,31 +17,33 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * @author qbz
+ * @version 1.0
+ * @date 2020/6/18 11:31
+ */
 @RestController
 public class UploadFileController {
-
-    //承接返回值
-    ArrayList<String> end =new ArrayList<>();
 
     @Autowired
     private FileUrlToDBService fileUrlToDBService;
 
-    //上传教案文件uploadTeachFile
+    ArrayList<String> end =new ArrayList<>();
+
+    /**
+     * 上传教案文件api，根据前端提交的文件上传使用的教案文件
+     * @param file 教案课件
+     * @return 响应体，状态码成功为200，课件为空为404，课件上传失败为-6，教案格式不符合要求为403
+     */
     @RequestMapping(value = "/TeachFile", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
     @RequireToken
     @TeacherOnly
     public ResponseBody uploadTeachFile(@RequestParam("fileName") MultipartFile file) {
-
-        //承接文件上传结果返回值
         end = UploadTeachFileService.UploadTeachFile(file);
-
         if (end.get(0).equals("404")){
             return new ResponseBody("404","教案文件为空",null);
         }else if(end.get(0).equals("200")){
-            //存入数据库表teachfileurl
             fileUrlToDBService.insertTeachFileUrl(end.get(1),end.get(2));
-
             return new ResponseBody("200","教案文件上传成功",null);
         }else if(end.get(0).equals("403")){
             return new ResponseBody("403","教案文件格式不符合要求",null);
@@ -50,19 +52,19 @@ public class UploadFileController {
         }
     }
 
-    //上传课件文件uploadLearnFile
+    /**
+     * 上传课件文件api，根据前端提交的文件上传使用的课件文件
+     * @param file 课件文件
+     * @return 响应体，状态码成功为200，课件为空为404，课件上传失败为-6，教案格式不符合要求为403
+     */
     @RequestMapping(value = "/LearnFile", produces = "application/json;charset=UTF-8", method = RequestMethod.POST)
     @RequireToken
     @TeacherOnly
     public ResponseBody uploadLearnFile(@RequestParam("fileName") MultipartFile file){
-
-        //承接文件上传结果返回值
         end = UploadLearnFileService.UploadLearnFile(file);
-
         if (end.get(0).equals("404")){
             return new ResponseBody("404","课件文件为空",null);
         }else if(end.get(0).equals("200")){
-            //存入数据库表learnfileurl
             fileUrlToDBService.insertLearnFileUrl(end.get(1),end.get(2));
             return new ResponseBody("200","课件文件上传成功",null);
         }else if(end.get(0).equals("403")){
@@ -72,24 +74,25 @@ public class UploadFileController {
         }
     }
 
-
-    //查询教案表
+    /**
+     * 教案表中提取url地址api
+     * @return 包含获取结果的响应体，状态码查询成功为200，data字段为数据表数组List-end
+     */
     @RequireToken
     @RequestMapping(value = "/TeachFile", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
     public ResponseBody searchTeachFile(){
         List<FileNameUrl> end=fileUrlToDBService.selectTeachFileUrl();
-        System.out.print("查询到的教案文件数量=="+end.size()+"\n");
-        System.out.print(end);
         return new ResponseBody("200","查询成功",end);
     }
 
-    //查询课件表
+    /**
+     * 课件表中提取url地址api
+     * @return 包含获取结果的响应体，状态码查询成功为200，data字段为数据表数组List-end
+     */
     @RequireToken
     @RequestMapping(value = "/LearnFile", produces = "application/json;charset=UTF-8", method = RequestMethod.GET)
     public ResponseBody searchLearnFile(){
         List<FileNameUrl> end=fileUrlToDBService.selectLearnFileUrl();
-        System.out.print("查询到的课件文件数量=="+end.size()+"\n");
-        System.out.print(end);
         return new ResponseBody("200","查询成功",end);
     }
 }

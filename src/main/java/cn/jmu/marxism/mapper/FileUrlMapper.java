@@ -8,29 +8,52 @@ import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
+/**
+ * @author qbz
+ * @version 1.0
+ * @date 2020/6/18 19:43
+ */
 @Repository
 public interface FileUrlMapper {
 
-        //插入教案表teachfileurl
+
+        /**
+         * 教案文件的文件名-Url插入数据库
+         * @param filename 课件名
+         * @param url 地址
+         */
         @Insert({"insert into teachfileurl values (#{filename},#{url})"})
-        int insertTeachFileUrl(@Param("filename") String filename, @Param("url") String url);
+        void insertTeachFileUrl(@Param("filename") String filename, @Param("url") String url);
 
-        //插入课件表 learnfileurl
+        /**
+         * 课件文件的文件名-Url插入数据库
+         * @param filename 课件名
+         * @param url 地址
+         */
         @Insert({"insert into learnfileurl values (#{filename},#{url})"})
-        int insertLearnFileUrl(@Param("filename") String filename, @Param("url") String url);
+        void insertLearnFileUrl(@Param("filename") String filename, @Param("url") String url);
 
-
-        //查询取数据教案表
+        /**
+         * 教案文件的文件名-Url从数据库中查询提取
+         */
         @Select("select * from teachfileurl")
         List<FileNameUrl> selectTeachFileUrl();
 
-        //查询取数据课件表
+        /**
+         * 课件文件的文件名-Url从数据库中查询提取
+         */
         @Select("select * from learnfileurl")
         List<FileNameUrl> selectLearnFileUrl();
 
+        /**
+         * 教案文件从数据库中删除
+         */
         @Delete("delete from learnfileurl where url=#{url}")
         int deleteLearn(@Param("url") String url);
 
+        /**
+         * 课件文件从数据库中删除
+         */
         @Delete("delete from teachfileurl where url=#{url}")
         int deleteTeach(@Param("url") String url);
 }

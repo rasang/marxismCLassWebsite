@@ -13,6 +13,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class FileNameUrl {
-    String fileName;//文件原名
-    String url;//文件生成的Url
+    //文件原名
+    String fileName;
+    //文件生成的Url
+    String url;
 }
