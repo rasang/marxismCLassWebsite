@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @author PlumK
+ * @author qbz
  * @version 1.0
  * @date 2020/6/22 19:43
  */
@@ -20,6 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class DeleteFileController {
     @Autowired
     DeleteFileService deleteFileService;
+    /**
+     * 通过此api进行删除文件
+     * @param fileName
+     * @param type
+     */
 
     @RequestMapping("/delete/{type}/{fileName}")
     public ResponseBody deleteFile(@PathVariable("type") String type, @PathVariable("fileName") String fileName){

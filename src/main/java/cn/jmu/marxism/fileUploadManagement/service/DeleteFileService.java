@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 
 /**
- * @author PlumK
+ * @author qbz
  * @version 1.0
  * @date 2020/6/22 19:44
  */
@@ -17,6 +17,11 @@ public class DeleteFileService {
     @Autowired
     FileUrlMapper fileUrlMapper;
 
+    /**
+     * 删除文件业务
+     * @param fileName
+     * @param type
+     */
     public ResponseBody deleteFile(String type, String fileName){
         String jarPath=System.getProperty("user.dir");
         String transJarPath=jarPath.replace("\\","/");
