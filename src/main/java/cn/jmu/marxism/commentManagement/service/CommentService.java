@@ -80,27 +80,22 @@ public class CommentService {
     /**
      * 删除评论
      * @param filename 要删除的评论的课件
-     * @param username 要删除的评论的评论人
-     * @param time 要删除的评论的时间
+     * @param id 评论id
      * @param token 用户的token
      * @return 删除的结果
      */
-    public ResponseBody deleteComment(String filename,String username,String time,String token){
+    public ResponseBody deleteComment(String filename,String id,String token){
         String userId= JWT.decode(token).getAudience().get(0);
         User user=userService.getUserById(Integer.parseInt(userId));
-        if(user.getIdentification().equals("T")||user.getUsername().equals(username)){
-            Comment comment=new Comment();
-            comment.setUsername(username);
-            comment.setFilename(filename);
-            comment.setTime(time);
-            int result=commentMapper.deleteComment(comment);
-            if(result==1){
-                return new ResponseBody("200","删除成功",null);
-            }else {
-                return new ResponseBody("403","删除失败",null);
-            }
+        Comment comment=new Comment();
+        comment.setUsername(user.getUsername());
+        comment.setFilename(filename);
+        comment.setId(Integer.parseInt(id));
+        int result=commentMapper.deleteComment(comment);
+        if(result==1){
+            return new ResponseBody("200","删除成功",null);
         }else {
-            return new ResponseBody("409","删除失败，只能删除自己的评论",null);
+            return new ResponseBody("403","删除失败",null);
         }
     }
 }

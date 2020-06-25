@@ -37,6 +37,6 @@ public interface CommentMapper {
      * @param comment 要删除的评论的信息
      * @return 删除的结果
      */
-    @Delete("delete from comment where filename=#{filename} and username=#{username} and time=#{time}")
+    @Delete("delete from comment where filename=#{filename} and username=#{username} and id=#{id}")
     public int deleteComment(Comment comment);
 }

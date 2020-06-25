@@ -50,14 +50,13 @@ public class CommentController {
     /**
      * 删除评论api，只能删除自己的评论，只有身份为教师才可以删除他人的评论
      * @param filename 要删除的评论的课件名
-     * @param username 要删除的评论的评论人
-     * @param time 要删除的评论的评论时间
+     * @param id 要删除的评论的id
      * @return 响应体，状态码成功为200，失败为403，权限不足为409
      */
     @RequestMapping(value = "/comment",method = RequestMethod.DELETE)
     @RequireToken
-    public ResponseBody deleteComment(@RequestParam("filename") String filename,@RequestParam("username") String username,@RequestParam("time") String time,HttpServletRequest request){
+    public ResponseBody deleteComment(@RequestParam("filename") String filename,@RequestParam("id") String id, HttpServletRequest request){
        String token=request.getHeader("token");
-       return commentService.deleteComment(filename,username,time,token);
+       return commentService.deleteComment(filename,id,token);
     }
 }
